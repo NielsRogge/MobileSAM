@@ -607,6 +607,8 @@ class TinyViT(nn.Module):
         for i in range(start_i, len(self.layers)):
             layer = self.layers[i]
             x = layer(x)
+
+        print("Shape of x before neck:", x.shape)
         B,_,C=x.size()
         x = x.view(B, 64, 64, C)
         x=x.permute(0, 3, 1, 2)
